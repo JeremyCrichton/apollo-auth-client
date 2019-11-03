@@ -1,6 +1,7 @@
 import React from 'react';
-import { useApolloClient, useQuery, useMutation } from '@apollo/react-hooks';
+import { useApolloClient, useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import styled from 'styled-components';
 
 import SignupForm from './SignupForm';
 
@@ -12,10 +13,11 @@ const SIGNUP_MUTATION = gql`
   }
 `;
 
-const IS_LOGGED_IN = gql`
-  query IsUserLoggedIn {
-    isLoggedIn @client
-  }
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default function Signup(props) {
@@ -29,17 +31,13 @@ export default function Signup(props) {
     }
   });
 
-  const { data } = useQuery(IS_LOGGED_IN);
-
-  console.log(data);
-
   if (loading) return <h2>Loading...</h2>;
   if (error) return <p>An error occurred</p>;
 
   return (
-    <>
+    <Container>
       <h2>Signup</h2>
       <SignupForm signup={signup} />
-    </>
+    </Container>
   );
 }

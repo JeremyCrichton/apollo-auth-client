@@ -17,10 +17,5 @@ export default function Dashboard() {
     return data.isLoggedIn ? <Users /> : <Login />;
   }
 
-  return (
-    <div>
-      <h1>Your Dashboard</h1>
-      <IsLoggedIn />
-    </div>
-  );
+  return <IsLoggedIn />;
 }

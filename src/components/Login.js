@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useApolloClient, useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import styled from 'styled-components';
 
 import LoginForm from './LoginForm';
 
@@ -11,6 +12,17 @@ const LOGIN_MUTATION = gql`
       token
     }
   }
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SignupContainer = styled.div`
+  margin-top: 1rem;
 `;
 
 export default function Login() {
@@ -26,10 +38,12 @@ export default function Login() {
   if (error) return <p>An error occurred</p>;
 
   return (
-    <>
+    <Container>
       <h2>Login</h2>
       <LoginForm login={login} />
-      <Link to='/signup'>Or Signup...</Link>
-    </>
+      <SignupContainer>
+        <Link to='/signup'>Or Signup...</Link>
+      </SignupContainer>
+    </Container>
   );
 }
