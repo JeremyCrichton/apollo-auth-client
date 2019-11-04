@@ -36,7 +36,7 @@ export default function Signup(props) {
 
   return (
     <Container>
-      <h2>Signup</h2>
+      <h2>Let's get started</h2>
       <SignupForm signup={signup} />
     </Container>
   );

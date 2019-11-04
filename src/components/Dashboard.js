@@ -1,20 +1,36 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import styled from 'styled-components';
 
-import Users from './Users';
 import Login from './Login';
 
-export default function Dashboard() {
-  const IS_LOGGED_IN = gql`
-    query IsUserLoggedIn {
-      isLoggedIn @client
-    }
-  `;
+const IS_LOGGED_IN = gql`
+  query IsUserLoggedIn {
+    isLoggedIn @client
+  }
+`;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const Heading = styled.h1`
+  font-size: 4rem;
+  margin: 0 auto;
+`;
+
+export default function Dashboard() {
   function IsLoggedIn() {
     const { data } = useQuery(IS_LOGGED_IN);
-    return data.isLoggedIn ? <Users /> : <Login />;
+    return data.isLoggedIn ? (
+      <Container>
+        <Heading>Welcome!</Heading>
+      </Container>
+    ) : (
+      <Login />
+    );
   }
 
   return <IsLoggedIn />;
